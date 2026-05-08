@@ -14,7 +14,13 @@ chosen=$(printf "  Shutdown\n  Reboot\n  Lock\n󰤄  Suspend\n󰍃  Log
 case "$chosen" in
 *Shutdown) systemctl poweroff ;;
 *Reboot) systemctl reboot ;;
-*Lock) sleep 0.1 && hyprlock ;;
+*Lock)
+  sleep 0.1
+  killall hypridle
+  hypridle &
+  hyprlock
+  killall hypridle
+  ;;
 *Suspend) systemctl suspend ;;
 *Logout) hyprctl dispatch exit 0 ;;
 esac
