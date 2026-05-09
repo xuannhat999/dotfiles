@@ -21,6 +21,13 @@ case "$chosen" in
   hyprlock
   killall hypridle
   ;;
-*Suspend) systemctl suspend ;;
+*Suspend)
+  sleep 0.1
+  killall hypridle
+  hypridle &
+  loginctl lock-session
+  systemctl suspend
+  killall hypridle
+  ;;
 *Logout) hyprctl dispatch exit 0 ;;
 esac

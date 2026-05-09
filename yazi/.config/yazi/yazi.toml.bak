@@ -1,10 +1,9 @@
-# A TOML linter such as https://github.com/tombi-toml/tombi can use this schema to validate your config.
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-
-#:schema https://yazi-rs.github.io/schemas/yazi.json
+# "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [mgr]
-ratio = [1, 4, 3]
+ratio = [2, 4, 3]
 sort_by = "alphabetical"
 sort_sensitive = false
 sort_reverse = false
@@ -14,7 +13,8 @@ linemode = "size_and_mtime"
 show_hidden = false
 show_symlink = true
 scrolloff = 5
-mouse_events = ["click", "scroll", "drag"]
+mouse_events = ["click", "scroll"]
+title_format = "Yazi: {cwd}"
 
 [preview]
 wrap = "no"
@@ -30,7 +30,7 @@ ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-  { run = "${EDITOR:-nvim} %s", desc = "$EDITOR", for = "unix", block = true },
+  { run = '${EDITOR} "$@"', desc = "Neovim", for = "unix", block = true },
   # { run = "code %s", desc = "code", for = "windows", orphan = true },
   # { run = "code -w %s", desc = "code (block)", for = "windows", block = true },
 ]
@@ -40,28 +40,32 @@ play = [
   # { run = 'start "" %s1', desc = "Play", for = "windows", orphan = true },
   # { run = "termux-open %s1", desc = "Play", for = "android" },
   { run = "mediainfo %s1; echo 'Press enter to exit'; read _", block = true, desc = "Show media info", for = "unix" },
-  { run = "mediainfo %s1 & pause", block = true, desc = "Show media info", for = "windows" },
+  # { run = "mediainfo %s1 & pause", block = true, desc = "Show media info", for = "windows" },
 ]
 open = [
   { run = "xdg-open %s1", desc = "Open", for = "linux" },
-  # { run = "open %s", desc = "Open", for = "macos" },
-  # { run = 'start "" %s1', desc = "Open", for = "windows", orphan = true },
-  # { run = "termux-open %s1", desc = "Open", for = "android" },
+  { run = "open %s", desc = "Open", for = "macos" },
+  { run = 'start "" %s1', desc = "Open", for = "windows", orphan = true },
+  { run = "termux-open %s1", desc = "Open", for = "android" },
 ]
 reveal = [
   { run = "xdg-open %d1", desc = "Reveal", for = "linux" },
-  # { run = "open -R %s1", desc = "Reveal", for = "macos" },
-  # { run = "explorer /select,%s1", desc = "Reveal", for = "windows", orphan = true },
-  # { run = "termux-open %d1", desc = "Reveal", for = "android" },
+  { run = "open -R %s1", desc = "Reveal", for = "macos" },
+  { run = "explorer /select,%s1", desc = "Reveal", for = "windows", orphan = true },
+  { run = "termux-open %d1", desc = "Reveal", for = "android" },
   { run = "clear; exiftool %s1; echo 'Press enter to exit'; read _", desc = "Show EXIF", for = "unix", block = true },
 ]
+zathurapdf = [{ run = 'zathura "$@" &', desc = "ZathuraPDF" }]
+libreoffice = [{ run = 'libreoffice "$@"', desc = "LibreOffice" }]
 extract = [{ run = "ya pub extract --list %s", desc = "Extract here" }]
 download = [
   { run = "ya emit download --open %S", desc = "Download and open" },
   { run = "ya emit download %S", desc = "Download" },
 ]
-zathurapdf = [{ run = 'zathura "$@" &', desc = "ZathuraPDF" }]
-libreoffice = [{ run = 'libreoffice "$@"', desc = "LibreOffice" }]
+nvim_folder = [
+  { run = 'bash -ic "cd \"$1\" && zoxide add . && ${EDITOR:-nvim}"', block = true, for = "unix" },
+]
+
 [open]
 rules = [
   { url = "*.pdf", use = [
@@ -71,13 +75,13 @@ rules = [
   { url = "*.pptx", use = "libreoffice" },
   { url = "*.docx", use = "libreoffice" },
   { url = "*.xlsx", use = "libreoffice" },
-
   # Folder
   { url = "*/", use = [
-    "edit",
+    "nvim_folder",
     "open",
     "reveal",
   ] },
+  { url = "*.desktop", use = "edit" },
   # Text
   { mime = "text/*", use = [
     "edit",
@@ -93,14 +97,18 @@ rules = [
     "play",
     "reveal",
   ] },
-  # Code
-  { mime = "application/{json,ndjson,javascript,wine-extension-ini}", use = [
-    "edit",
-    "reveal",
-  ] },
   # Archive
   { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", use = [
     "extract",
+    "reveal",
+  ] },
+  # JSON
+  { mime = "application/{json,ndjson}", use = [
+    "edit",
+    "reveal",
+  ] },
+  { mime = "*/javascript", use = [
+    "edit",
     "reveal",
   ] },
   # Empty file
@@ -115,31 +123,50 @@ rules = [
     "open",
     "reveal",
   ] },
+
 ]
 
 [tasks]
-file_workers = 3
-plugin_workers = 5
-fetch_workers = 5
-preload_workers = 2
-process_workers = 5
+micro_workers = 10
+macro_workers = 10
 bizarre_retry = 3
-image_alloc = 536870912      # 512MB
+image_alloc = 536870912
 image_bound = [10000, 10000]
 suppress_preload = false
 
 [plugin]
+prepend_preloaders = [
+  # Office Documents
+  { mime = "application/openxmlformats-officedocument.*", run = "office" },
+  { mime = "application/oasis.opendocument.*", run = "office" },
+  { mime = "application/ms-*", run = "office" },
+  { mime = "application/msword", run = "office" },
+  { url = "*.docx", run = "office" },
+  { url = "*.pptx", run = "office" },
+  { url = "*.xlsx", run = "office" },
+  { url = "*.pdf", run = "office" },
+]
+
+prepend_previewers = [
+  # Office Documents
+  { mime = "application/openxmlformats-officedocument.*", run = "office" },
+  { mime = "application/oasis.opendocument.*", run = "office" },
+  { mime = "application/ms-*", run = "office" },
+  { mime = "application/msword", run = "office" },
+  { url = "*.docx", run = "office" },
+  { url = "*.pptx", run = "office" },
+  { url = "*.xlsx", run = "office" },
+  { url = "*.pdf", run = "office" },
+]
+
 fetchers = [
-  # MIME-type
-  { url = "*/", run = "mime.dir", prio = "high", group = "mime" },
-  { url = "local://*", run = "mime.local", prio = "high", group = "mime" },
-  { url = "remote://*", run = "mime.remote", prio = "high", group = "mime" },
+  # Mimetype
+  { id = "mime", url = "*/", run = "mime.dir", prio = "high" },
+  { id = "mime", url = "local://*", run = "mime.local", prio = "high" },
+  { id = "mime", url = "remote://*", run = "mime.remote", prio = "high" },
 ]
 
 spotters = [
-  # Multi-file
-  { mime = "multi/*", run = "multi" },
-  # Folder
   { url = "*/", run = "folder" },
   # Code
   { mime = "text/*", run = "code" },
