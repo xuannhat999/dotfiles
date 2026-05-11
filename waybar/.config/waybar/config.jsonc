@@ -5,11 +5,11 @@
   "margin-bottom": 3,
   "margin-left": 10,
   "margin-right": 10,
-  "height": 30,
+  "height": 28,
   "spacing": 10,
   "modules-left": [
     "custom/launcher",
-    "hyprland/workspaces",
+    "hyprland/workspaces"
   ],
   "modules-center": [
     "group/date-time"
@@ -60,9 +60,7 @@
     ]
   },
   "cpu": {
-    "align": 0,
-    // "justify": "left",
-    "format": " {usage}%",
+    "format": " {usage}% | ",
     "tooltip": false,
     "states": {
       "warning": 70,
@@ -78,6 +76,7 @@
     }
   },
   "group/system": {
+    "orientation": "horizontal",
     "modules": [
       "cpu",
       "memory"

@@ -29,5 +29,5 @@ case "$chosen" in
   systemctl suspend
   killall hypridle
   ;;
-*Logout) hyprctl dispatch exit 0 ;;
+*Logout) hyprctl dispatch 'hl.dsp.exit()' ;;
 esac
