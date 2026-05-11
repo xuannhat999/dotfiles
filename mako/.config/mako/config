@@ -1,16 +1,16 @@
-font=JetBrainsMono NerdFont 13
+font=JetBrainsMono NerdFont 12
 background-color=#1d1325
 text-color=#ffffff
 border-radius=10
 border-size=1
 border-color=#b29cc6
 default-timeout=3000
-padding=10
+padding=5
 width=340
-height=120
+height=150
 
 [category=alert]
-text-color=#dbbe3c
+text-color=#ffc35e
 
 [category=critical]
-text-color=#e63636
+text-color=#ff6671

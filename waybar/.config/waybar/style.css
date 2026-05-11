@@ -1,6 +1,8 @@
 @define-color primary1 #d8adff;
 @define-color background1 #22122f;
-
+@define-color good #32df91;
+@define-color warning #ffc35e;
+@define-color critical #ff6671;
 
 * {
   font-family: "JetBrainsMono Nerd Font Propo";
@@ -99,11 +101,11 @@ window#waybar {
 
 #cpu.warning, 
 #memory.warning {
-    color: #f9e2af; 
+    color: @warning; 
 }
 #cpu.critical, 
 #memory.critical {
-    color: #f38ba8;
+    color: @critical;
 }
 #system {
   padding: 0px 10px;
@@ -114,7 +116,7 @@ window#waybar {
 
 #battery {
   font-weight: bold;
-  color: #32df91;
+  color: @good;
   background: transparent;
   font-size: medium;
 }
@@ -122,30 +124,30 @@ window#waybar {
 #battery.charging,
 #battery.plugged,
 #battery.good {
-  color: #32df91;
+  color: @good;
 }
 
 #battery.warning {
-  color: #dbbe3c;
+  color: @warning;
 }
 
 /* #battery.critical { */
 #battery.critical:not(.charging) {
-  color: #e63636;
+  color: @critical;
 }
 
 #network.disconnected,
 #network.disabled {
-  color: #e63636
+  color: @critical
 }
 
 #network.linked {
-  color: #dbbe3c;
+  color: @warning;
 }
 
 
 #custom-power {
-  font-size: large;
+  font-size: 20px;
   margin-left: 5px;
   margin-right: 10px;
 }

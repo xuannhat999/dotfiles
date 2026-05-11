@@ -45,7 +45,7 @@ vim.keymap.set("n", "<F5>", function()
 
     local class_name = ""
     if start_idx then
-      local relative_path = file:sub(start_idx + #file:match(".*" .. path_sep .. "java" .. path_sep) or start_idx + 4)
+      -- local relative_path = file:sub(start_idx + #file:match(".*" .. path_sep .. "java" .. path_sep) or start_idx + 4)
       local first_line = vim.fn.getline(1, 10) -- Đọc 10 dòng đầu
       local package_name = ""
       for _, line in ipairs(first_line) do
@@ -64,16 +64,13 @@ vim.keymap.set("n", "<F5>", function()
     local has_pom = vim.fn.filereadable(root .. "/pom.xml") == 1
 
     if has_pom then
-      -- Nếu là Maven, dùng lệnh compile của Maven
       cmd = string.format('cd %s && mvn compile exec:java -Dexec.mainClass="%s"', root, class_name)
     else
-      -- Nếu không phải Maven, tự tạo folder bin và biên dịch toàn bộ package hiện tại
       local bin_dir = root .. "/bin"
       if vim.fn.isdirectory(bin_dir) == 0 then
         vim.fn.mkdir(bin_dir, "p")
       end
 
-      -- Tìm thư mục chứa file hiện tại để biên dịch cả package (tránh lỗi symbol)
       local current_dir = vim.fn.expand("%:p:h")
       cmd = string.format(
         "javac -d %s -cp %s %s/*.java && java -cp %s:%s %s",
@@ -110,22 +107,32 @@ vim.keymap.set("n", "<C-/>", function()
   })
 end, { desc = "Terminal" })
 vim.keymap.set("n", "<leader>si", function()
-  local fzf = require("fzf-lua")
-  local path = require("fzf-lua.path")
-
-  fzf.files({
-    prompt = "SQL Schemas> ",
+  Snacks.picker.files({
+    title = "SQL Schemas",
     cwd = vim.fn.expand("~"),
-    -- Bỏ --absolute-path, fd sẽ trả về đường dẫn tương đối so với cwd
-    cmd = "fd -e sql --exclude .git --exclude node_modules --exclude .vscode --exclude .local --exclude .cache",
+    cmd = "fd",
+    args = {
+      "-e",
+      "sql",
+      "--exclude",
+      ".git",
+      "--exclude",
+      "node_modules",
+      "--exclude",
+      ".vscode",
+      "--exclude",
+      ".local",
+      "--exclude",
+      ".cache",
+    },
     actions = {
-      ["default"] = function(selected, opts)
-        if not selected or #selected == 0 then
+      confirm = function(picker, item)
+        picker:close()
+        if not item then
           return
         end
 
-        local entry = path.entry_to_file(selected[1], opts)
-        local file_path = entry.path
+        local file_path = item.file or item.path
 
         local ok, content = pcall(vim.fn.readfile, file_path)
         if ok then
@@ -136,8 +143,7 @@ vim.keymap.set("n", "<leader>si", function()
           local filename = vim.fn.fnamemodify(file_path, ":t")
           vim.notify("Copied: " .. filename, vim.log.levels.INFO)
         else
-          -- Nếu vẫn lỗi, thông báo này sẽ cho ta thấy chính xác path bị sai chỗ nào
-          vim.notify("File not readable: " .. file_path, vim.log.levels.ERROR)
+          vim.notify("File not readable: " .. (file_path or "unknown"), vim.log.levels.ERROR)
         end
       end,
     },
@@ -145,7 +151,6 @@ vim.keymap.set("n", "<leader>si", function()
 end, { desc = "Import Schema" })
 
 vim.keymap.set("n", "<leader>se", function()
-  -- Hàm helper để xâu chuỗi các input
   local function prompt_export()
     vim.ui.input({ prompt = "Host: ", default = "localhost" }, function(host)
       if not host or host == "" then
@@ -162,7 +167,6 @@ vim.keymap.set("n", "<leader>se", function()
             return
           end
 
-          -- Dùng input thường cho password (hoặc vim.fn.inputsecret nếu muốn ẩn)
           vim.ui.input({ prompt = "Password: ", default = "admin" }, function(pass)
             vim.ui.input({ prompt = "Database: " }, function(db_name)
               if not db_name or db_name == "" then
@@ -174,8 +178,6 @@ vim.keymap.set("n", "<leader>se", function()
                   return
                 end
 
-                -- Tạo câu lệnh dump
-                -- Lưu ý: -p và password dính liền nhau, không có khoảng trắng
                 local cmd = string.format(
                   "mariadb-dump -h %s -P %s -u %s -p'%s' %s --single-transaction --quick > %s",
                   host,
