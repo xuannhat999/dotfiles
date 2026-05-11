@@ -275,12 +275,20 @@ hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }))
 
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 
 -- Column  (Scrolling layout)
+-- Swap Column
 hl.bind(mainMod .. " + period", hl.dsp.layout("swapcol r"))
 hl.bind(mainMod .. " + comma", hl.dsp.layout("swapcol l"))
-hl.bind(mainMod .. " + CTRL + H", hl.dsp.layout("move +1920"))
-hl.bind(mainMod .. " + CTRL + L", hl.dsp.layout("move -1920"))
+-- Resize Column
+hl.bind(mainMod .. " + CTRL + H", hl.dsp.layout("colresize -0.1"))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.layout("colresize +0.1"))
+-- Toggle consume
+hl.bind(mainMod .. " + CTRL + period", hl.dsp.layout("consume_or_expel next"))
+hl.bind(mainMod .. " + CTRL + comma", hl.dsp.layout("consume_or_expel prev"))
+-- Toggle fit
 hl.bind(mainMod .. " + F", function()
 	local win = hl.get_active_window()
 	if not win then
