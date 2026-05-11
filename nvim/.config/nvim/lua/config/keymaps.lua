@@ -1,4 +1,3 @@
-vim.keymap.set("n", "<leader>a", "ggvG", { desc = "Select All" })
 vim.keymap.set("n", "<Tab>", "i", { noremap = true, silent = true })
 vim.keymap.set({ "n", "v" }, "x", [["_d]], { noremap = true })
 vim.keymap.set("n", "xx", [["_dd]], { noremap = true })

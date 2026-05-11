@@ -2,6 +2,17 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 # "$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
 # In Yazi, bind a key to copy file URIs to clipboard
+
+# Copy yanked files to the system clipboard
+[[mgr.prepend_keymap]]
+on = "y"
+run = ["yank", 'plugin clipboard -- --action=copy']
+
+# Paste files from the system clipboard into the current directory
+[[mgr.prepend_keymap]]
+on = "<C-p>"
+run = ['plugin clipboard -- --action=paste']
+
 [[mgr.prepend_keymap]]
 on = "b"
 run = "plugin recycle-bin"
@@ -26,17 +37,7 @@ desc = "Convert selected files to WebP"
 on = ["g", "i"]
 run = "plugin lazygit"
 desc = "run lazygit"
-#
-# [[mgr.prepend_keymap]]
-# on = "p"
-# run = "plugin ucp paste notify"
-# desc = "Paste"
-#
-# [[mgr.prepend_keymap]]
-# on = "y"
-# run = "plugin ucp copy notify"
-# desc = "Copy"
-#
+
 # sudo cp/mv
 [[mgr.prepend_keymap]]
 on = ["R", "p", "p"]
