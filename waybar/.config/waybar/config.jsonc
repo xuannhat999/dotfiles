@@ -60,7 +60,7 @@
     ]
   },
   "cpu": {
-    "format": " {usage}% | ",
+    "format": " {usage}%  ",
     "tooltip": false,
     "states": {
       "warning": 70,
@@ -151,7 +151,7 @@
     "on-click": "~/.config/hypr/scripts/launch_wifitui.sh"
   },
   "pulseaudio": {
-    "format": "{icon} {volume}%",
+    "format": "{icon}",
     // "format-bluetooth": "{icon} {volume}%",
     "format-bluetooth-muted": "",
     "format-muted": "",
