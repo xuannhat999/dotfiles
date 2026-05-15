@@ -1,6 +1,7 @@
 - OS: Linux
 - Distro: Arch
 - Window Manager: Hyprland
+- Greeter: greetd + greetd-tuigreed
 - Status bar: Waybar
 - Notification: Mako
 - Launcher: Rofi
