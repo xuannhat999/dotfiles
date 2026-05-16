@@ -41,8 +41,9 @@ hl.workspace_rule({ workspace = "5", persistent = true })
 -- Set programs that you use
 local terminal = "kitty"
 local fileManager = "yazi"
-local menu = "rofi"
+local launcher = "pkill rofi || rofi -show drun"
 local browser = "brave"
+local powermenu = "pkill rofi ||  ~/.config/rofi/powermenu.sh"
 
 -------------------
 ---- AUTOSTART ----
@@ -128,7 +129,7 @@ hl.config({
 		},
 
 		blur = {
-			enabled = true,
+			enabled = false,
 			size = 3,
 			passes = 1,
 			vibrancy = 0.1696,
@@ -204,6 +205,8 @@ hl.config({
 		kb_options = "",
 		kb_rules = "",
 
+		repeat_rate = 30,
+		repeat_delay = 300,
 		follow_mouse = 1,
 
 		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
@@ -238,6 +241,8 @@ hl.gesture({
 ---------------------
 
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
+local secondMod = "SUPER + SHIFT"
+local thirdMod = "SUPER + CTRL"
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
@@ -250,8 +255,8 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(terminal .. " bash -c -l nvim"))
 
 -- Menu ( Rofi )
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("pkill " .. menu .. "|| " .. menu .. " -show drun"))
-hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("pkill " .. menu .. "|| ~/.config/rofi/powermenu.sh"))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(launcher))
+hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd(powermenu))
 
 -- Wifi / Bluetooth / Audio
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_impala.sh"))
@@ -260,7 +265,7 @@ hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_bluetu
 
 -- Screen Capture ( Hyprshot )
 hl.bind("PRINT", hl.dsp.exec_cmd(" hyprshot -m output -m active"))
-hl.bind(mainMod .. " + SHIFT + X", hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind(secondMod .. " + X", hl.dsp.exec_cmd("hyprshot -m region"))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))
@@ -278,11 +283,11 @@ hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + period", hl.dsp.layout("swapcol r"))
 hl.bind(mainMod .. " + comma", hl.dsp.layout("swapcol l"))
 -- Resize Column
-hl.bind(mainMod .. " + CTRL + H", hl.dsp.layout("colresize -0.1"))
-hl.bind(mainMod .. " + CTRL + L", hl.dsp.layout("colresize +0.1"))
+hl.bind(thirdMod .. " + H", hl.dsp.layout("colresize -0.1"))
+hl.bind(thirdMod .. " + L", hl.dsp.layout("colresize +0.1"))
 -- Toggle consume
-hl.bind(mainMod .. " + CTRL + period", hl.dsp.layout("consume_or_expel next"))
-hl.bind(mainMod .. " + CTRL + comma", hl.dsp.layout("consume_or_expel prev"))
+hl.bind(thirdMod .. " + period", hl.dsp.layout("consume_or_expel next"))
+hl.bind(thirdMod .. " + comma", hl.dsp.layout("consume_or_expel prev"))
 -- Toggle fit
 hl.bind(mainMod .. " + F", function()
 	local win = hl.get_active_window()
@@ -300,11 +305,11 @@ end)
 for i = 1, 10 do
 	local key = i % 10 -- 10 maps to key 0
 	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = i }))
-	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = i }))
+	hl.bind(secondMod .. " + " .. key, hl.dsp.window.move({ workspace = i }))
 end
 
-hl.bind(mainMod .. " + SHIFT + H", hl.dsp.focus({ workspace = "e-1" }))
-hl.bind(mainMod .. " + SHIFT + L", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(secondMod .. " + H", hl.dsp.focus({ workspace = "e-1" }))
+hl.bind(secondMod .. " + L", hl.dsp.focus({ workspace = "e+1" }))
 
 -- Example special workspace
 hl.bind(mainMod .. " + M", hl.dsp.workspace.toggle_special("music"))
