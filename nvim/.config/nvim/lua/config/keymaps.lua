@@ -1,11 +1,27 @@
+-- Insert start word
 vim.keymap.set("n", "<Tab>", "i", { noremap = true, silent = true })
-vim.keymap.set({ "n", "v" }, "x", [["_d]], { noremap = true })
-vim.keymap.set("n", "xx", [["_dd]], { noremap = true })
+
+-- Delete ( no clipboard )
+vim.keymap.set({ "n", "v" }, "d", [["_d]], { noremap = true })
+vim.keymap.set("n", "dd", [["_dd]], { noremap = true })
+
+-- Cut
+vim.keymap.set({ "n", "v" }, "x", "d", { noremap = true })
+vim.keymap.set({ "n", "v" }, "xx", "dd", { noremap = true })
+
+-- Redo
 vim.keymap.set("n", "U", "g+", { desc = "Redo (time travel forward)" })
+
+-- Change ( no clipboard )
 vim.keymap.set({ "n", "x" }, "c", '"_c')
 vim.keymap.set("n", "C", '"_C')
+
+-- Open Lazy/LazyExtras
 vim.keymap.set("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set("n", "<leader>le", "<cmd>LazyExtras<cr>", { desc = "LazyExtras" })
+vim.keymap.set("n", "<leader>lm", "<cmd>Mason<cr>", { desc = "Mason" })
+
+-- Run program
 vim.keymap.set("n", "<F5>", function()
   if vim.bo.buftype == "" then
     vim.cmd("w")

@@ -54,6 +54,7 @@ window#waybar {
   min-width: 55px;
   font-weight: bolder;
 }
+
 #workspaces button.special {
   margin-left: 8px;
 }
@@ -61,8 +62,9 @@ window#waybar {
 #workspaces button.special.active,
 #workspaces button.special.focused {
   background: linear-gradient(90deg, #ff95b7, @primary1);
-  min-width:45px;
+  min-width: 45px;
 }
+
 #date-time {
   background-color: @background1;
   border-radius: 10px;
@@ -99,14 +101,16 @@ window#waybar {
   font-size: small;
 }
 
-#cpu.warning, 
+#cpu.warning,
 #memory.warning {
-    color: @warning; 
+  color: @warning;
 }
-#cpu.critical, 
+
+#cpu.critical,
 #memory.critical {
-    color: @critical;
+  color: @critical;
 }
+
 #system {
   padding: 0px 10px;
   border-radius: 8px;
@@ -164,6 +168,7 @@ window#waybar {
   border-radius: 10px;
   padding: 0 15px;
 }
+
 #network-bluetooth-audio {
   border: 1px solid @primary1;
   background-color: @background1;

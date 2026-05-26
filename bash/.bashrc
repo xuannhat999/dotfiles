@@ -33,7 +33,6 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 export HISTSIZE=10000
 export HISTFILESIZE=20000
 export HISTCONTROL=ignoredups
-. "$HOME/.cargo/env"
 
 # Kiểm tra nếu KHÔNG phải là terminal trong Neovim thì mới chạy fastfetch
 if [ -z "$NVIM" ] && [ -z "$VIMRUNTIME" ]; then
