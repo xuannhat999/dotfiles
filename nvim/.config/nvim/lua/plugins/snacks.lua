@@ -13,7 +13,7 @@ return {
         },
         explorer = {
           hidden = true,
-          ignored = false,
+          ignored = true,
         },
       },
     },

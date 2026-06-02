@@ -257,6 +257,7 @@ hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(terminal .. " bash -c -l nvim"))
 -- Menu ( Rofi )
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(launcher))
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd(powermenu))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("~/.config/hypr/scripts/launch-rofi-images.sh"))
 
 -- Wifi / Bluetooth / Audio
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_impala.sh"))
@@ -264,8 +265,14 @@ hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_wiremi
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_bluetui.sh"))
 
 -- Screen Capture ( Hyprshot )
-hl.bind("PRINT", hl.dsp.exec_cmd(" hyprshot -m output -m active"))
-hl.bind(secondMod .. " + X", hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind(
+	"PRINT",
+	hl.dsp.exec_cmd("TZ='Asia/Ho_Chi_Minh' hyprshot -m output -m active -f $(date +%Y-%m-%d_%H:%m:%S).png")
+)
+hl.bind(
+	secondMod .. " + X",
+	hl.dsp.exec_cmd("TZ='Asia/Ho_Chi_Minh' hyprshot -m region -f $(date +%Y-%m-%d_%H:%m:%S).png")
+)
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left", hl.dsp.focus({ direction = "left" }))

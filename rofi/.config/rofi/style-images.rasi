@@ -1,14 +1,15 @@
 * {
-    bg-col:           #22122fE6; /* Tím tối 90% */
-    fg-col:     #d2abff;   /* Nền khi chọn */
-    fg-selected:      #000000;   /* Chữ đen khi chọn */
+    bg-col:           #22122fE6;
+    fg-col:           #d2abff;   
+    fg-selected:      #000000;   
 
     background-color: transparent;
+    font:             "JetBrainsMono Nerd Font 14";
 }
 
 window {
-    height:           450px;
-    width:            600px;
+    height:           570px;     
+    width:            700px;     
     border:           2px;
     border-color:     @fg-col;
     border-radius:    16px;
@@ -16,46 +17,51 @@ window {
 }
 
 mainbox {
-    padding:          20px;
-    children:         [ inputbar,message, listview ];
+    padding:          10px;      
+    children:         [ inputbar, message, listview ];
 }
+
 inputbar {
     border:           1px;
-    border-radius:    20px;
+    border-radius:    12px;      
     border-color:     @fg-col;
-    margin:           0px 0px 10px;
-    padding:          5px 15px;
+    margin:           0px 0px 8px; 
+    padding:          6px 12px;
     background-color: #190e22E6;
     children:         [ entry ];
 }
 
 textbox {
-    text-color:#ffffff;
-    padding: 10px 10px;
+    text-color:       #ffffff;
+    padding:          5px 10px;  
 }
+
 entry {
     text-color:       @fg-col;
-    placeholder:      "Search...";
+    placeholder:      "Search images...";
     placeholder-color: #6e5a85;
 }
 
 listview {
     columns:          1;
-    lines:            8;
-    fixed-height:     0;
+    lines:            5;         
+    fixed-height:     true;      
     dynamic:          true;
     scrollbar:        true;
+    spacing:          4px;       
 }
+
 scrollbar {
-    width:            5px;
+    width:            4px;
     border:           0;
-    handle-width:     5px;
-    handle-color:     @fg-col; /* Dùng màu tím Lavender của bạn */
+    handle-width:     4px;
+    handle-color:     @fg-col;
     background-color: transparent;
 }
+
 element {
-    padding:          8px;
-    border-radius:    10px;
+    padding:          4px 8px;   
+    border-radius:    8px;
     text-color:       @fg-col;
 }
 
@@ -72,10 +78,11 @@ element selected.normal, element selected.active {
 element-text {
     background-color: inherit;
     text-color:       inherit;
-    vertical-align:   0.5;
+    vertical-align:   0.5;       
 }
 
 element-icon {
-    size:             1.2em;
-    margin:           0 10px 0 0;
+    size:             4.5em;     
+    margin:           0 12px 0 0;
+    vertical-align:   0.5;       
 }

@@ -1,9 +1,6 @@
 * {
-    /* Giữ nguyên bảng màu tím khói của bạn */
     bg-col:           #22122fE6; /* Tím tối trong suốt */
-    border-col:       #cba6f7;   /* Tím Lavender */
     fg-col:           #d2abff;   /* Tím chữ */
-    selected-col:     #d2abff;   /* Nền khi chọn */
     fg-selected:      #000000;   /* Chữ đen khi chọn */
 
     background-color: transparent;
@@ -14,7 +11,7 @@ window {
     width:            500px;
     height:           480px; 
     border:           2px;
-    border-color:     @border-col;
+    border-color:         @fg-col;
     border-radius:    15px;
     background-color: @bg-col;
     location:         center;     /* Nhảy ra giữa màn hình */
@@ -53,7 +50,7 @@ element-text {
 
 /* Ép màu khi được chọn */
 element selected {
-    background-color: @selected-col;
+    background-color: @fg-col;
     text-color:       @fg-selected;
 }
 
