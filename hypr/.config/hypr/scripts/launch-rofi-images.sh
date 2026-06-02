@@ -19,6 +19,6 @@ SELECTED_IMAGE=$(echo -e "$ROFI_INPUT" | rofi -dmenu -i \
 if [ -n "$SELECTED_IMAGE" ] && [ -f "$SELECTED_IMAGE" ]; then
   if file --mime-type "$SELECTED_IMAGE" | grep -qE 'image/'; then
     wl-copy <"$SELECTED_IMAGE"
-    notify-send "Clipboard" "Đã copy ảnh vào bộ nhớ tạm!" --icon="$SELECTED_IMAGE"
+    notify-send "Clipboard" "Copied image to clipboard!" --icon="$SELECTED_IMAGE"
   fi
 fi
