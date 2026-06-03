@@ -42,7 +42,7 @@ hl.workspace_rule({ workspace = "5", persistent = true })
 local terminal = "kitty"
 local fileManager = "yazi"
 local launcher = "pkill rofi || rofi -show drun"
-local browser = "brave"
+local browser = "brave-origin"
 local powermenu = "pkill rofi ||  ~/.config/rofi/powermenu.sh"
 
 -------------------
