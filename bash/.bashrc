@@ -4,7 +4,6 @@
 
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH="$HOME/.npm-global/bin:$PATH:$ANDROID_HOME/platform-tools"
-# Sửa lỗi trắng màn hình Java trên Arch Linux (Hyprland/Wayland)
 export _JAVA_AWT_WM_NONREPARENTING=1
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 export NO_AT_BRIDGE=1
@@ -18,8 +17,6 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 # PS1='[\u@\h \W]\$ '
 
-alias ollama-on='sudo systemctl start ollama.service'
-alias ollama-off='sudo systemctl stop ollama.service'
 alias db='cd ~/schema && nvim -c "DBUIToggle"'
 alias y='yazi'
 
@@ -34,7 +31,6 @@ export HISTSIZE=10000
 export HISTFILESIZE=20000
 export HISTCONTROL=ignoredups
 
-# Kiểm tra nếu KHÔNG phải là terminal trong Neovim thì mới chạy fastfetch
 if [ -z "$NVIM" ] && [ -z "$VIMRUNTIME" ]; then
   fastfetch
 fi
