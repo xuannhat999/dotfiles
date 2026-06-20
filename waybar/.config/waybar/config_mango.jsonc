@@ -1,0 +1,170 @@
+// -*- mode: jsonc -*-
+{
+  "layer": "top",
+  "margin-top": 3,
+  "margin-bottom": 3,
+  "margin-left": 10,
+  "margin-right": 10,
+  "height": 28,
+  "spacing": 10,
+  "modules-left": [
+    "custom/launcher",
+    "ext/workspaces"
+  ],
+  "modules-center": [
+    "group/date-time"
+  ],
+  "modules-right": [
+    "group/system",
+    "group/pw",
+    "group/network-bluetooth-audio",
+    "tray",
+    "custom/power"
+  ],
+  "custom/launcher": {
+    "format": "󰣇",
+    "tooltip": false,
+    "on-click": "rofi -show drun"
+  },
+  "ext/workspaces": {
+    "format": "{icon}",
+    "ignore-hidden": true,
+    "on-click": "activate",
+    "on-click-right": "deactivate"
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "clock#date": {
+    "format": "{:%a, %d/%m/%y}",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "format-alt": "{calendar}",
+    "tooltip-format": "{calendar}"
+  },
+  "clock#time": {
+    "format": " {:%H:%M}",
+    "timezone": "Asia/Ho_Chi_Minh"
+  },
+  "group/date-time": {
+    "orientation": "horizontal",
+    "modules": [
+      "clock#time",
+      "clock#date"
+    ]
+  },
+  "cpu": {
+    "format": " {usage}%  ",
+    "tooltip": false,
+    "states": {
+      "warning": 70,
+      "critical": 95
+    }
+  },
+  "memory": {
+    "format": " {used:0.1f}G",
+    "tooltip": false,
+    "states": {
+      "warning": 70,
+      "critical": 95,
+    }
+  },
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": [
+      "cpu",
+      "memory"
+    ]
+  },
+  "group/pw": {
+    "orientation": "horizontal",
+    "modules": [
+      "battery",
+      "power-profiles-daemon"
+    ]
+  },
+  "battery": {
+    "states": {
+      "good": 100,
+      "warning": 25,
+      "critical": 10
+    },
+    "format": "{icon} {capacity}% ",
+    "format-full": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{icon} {time}",
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "on-update": "~/.config/waybar/scripts/check_battery.sh"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
+  },
+  "group/network-bluetooth-audio": {
+    "orientation": "horizontal",
+    "modules": [
+      "network",
+      "bluetooth",
+      "pulseaudio"
+    ]
+  },
+  "bluetooth": {
+    "format": "{icon}",
+    "format-icons": {
+      "on": "",
+      "off": "󰂲",
+      "connected": "󰂱",
+      "disabled": "󰂲"
+    },
+    "tooltip-format-connected": "{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_battery_percentage}%",
+    "on-click": "~/.config/hypr/scripts/launch_bluetui.sh"
+  },
+  "network": {
+    "interface": "wlan0",
+    "format-wifi": "󱚽",
+    "format-ethernet": "",
+    "tooltip-format": "{essid} ({signalStrength}%)",
+    "format-linked": "󱚸",
+    "format-disconnected": "󱛅",
+    "format-disabled": "󰖪",
+    "on-click": "~/.config/hypr/scripts/launch_wifitui.sh"
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    // "format-bluetooth": "{icon} {volume}%",
+    "format-bluetooth-muted": "",
+    "format-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "~/.config/hypr/scripts/launch_wiremix.sh"
+  },
+  "custom/power": {
+    "icon-size": 21,
+    "format": "⏻",
+    "tooltip": false,
+    "on-click": "~/.config/rofi/powermenu.sh"
+  }
+}

@@ -72,6 +72,9 @@ hl.env("HYPRSHOT_DIR", "Pictures/Screenshots")
 hl.env("EDITOR", "nvim")
 hl.env("SUDO_EDITOR", "nvim")
 hl.env("GTK_THEME", "catppuccin-mocha-mauve-standard+default")
+hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
+hl.env("XDG_SESSION_TYPE", "wayland")
+hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -206,7 +209,7 @@ hl.config({
 		kb_rules = "",
 
 		repeat_rate = 30,
-		repeat_delay = 300,
+		repeat_delay = 250,
 		follow_mouse = 1,
 
 		sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
@@ -249,7 +252,7 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(terminal .. " bash -c -l " .. fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.config/hypr/scripts/powermode_switch.sh"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("~/.config/scripts/powermode_switch.sh"))
 -- hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(terminal .. " bash -c -l nvim"))
@@ -257,12 +260,12 @@ hl.bind(mainMod .. " + C", hl.dsp.exec_cmd(terminal .. " bash -c -l nvim"))
 -- Menu ( Rofi )
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(launcher))
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd(powermenu))
-hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("~/.config/hypr/scripts/launch-rofi-images.sh"))
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("~/.config/scripts/launch-rofi-images.sh"))
 
 -- Wifi / Bluetooth / Audio
-hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_impala.sh"))
-hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_wiremix.sh"))
-hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("~/.config/hypr/scripts/launch_bluetui.sh"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("~/.config/scripts/launch_impala.sh"))
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd("~/.config/scripts/launch_wiremix.sh"))
+hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("~/.config/scripts/launch_bluetui.sh"))
 
 -- Screen Capture ( Hyprshot )
 hl.bind(
@@ -348,35 +351,35 @@ hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
 -- Volume UP
 hl.bind(
 	"XF86AudioRaiseVolume",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.config/hypr/scripts/audio.sh"),
+	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.config/scripts/audio.sh"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	mainMod .. " + F3",
-	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.config/hypr/scripts/audio.sh"),
+	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.config/scripts/audio.sh"),
 	{ locked = true, repeating = true }
 )
 -- Volume DOWN
 hl.bind(
 	"XF86AudioLowerVolume",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ~/.config/hypr/scripts/audio.sh"),
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ~/.config/scripts/audio.sh"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	mainMod .. " + F2",
-	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ~/.config/hypr/scripts/audio.sh"),
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- && ~/.config/scripts/audio.sh"),
 	{ locked = true, repeating = true }
 )
 
 -- Mute AUDIO
 hl.bind(
 	"XF86AudioMute",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/hypr/scripts/audio.sh"),
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/scripts/audio.sh"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	mainMod .. " + F1",
-	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/hypr/scripts/audio.sh"),
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/scripts/audio.sh"),
 	{ locked = true, repeating = true }
 )
 
@@ -395,24 +398,24 @@ hl.bind(
 -- Brightness DOWN
 hl.bind(
 	"XF86MonBrightnessUp",
-	hl.dsp.exec_cmd("brightnessctl set 5%+ && ~/.config/hypr/scripts/screen_brightness.sh"),
+	hl.dsp.exec_cmd("brightnessctl set 5%+ && ~/.config/scripts/screen_brightness.sh"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	mainMod .. " + F10",
-	hl.dsp.exec_cmd("brightnessctl set 5%+ && ~/.config/hypr/scripts/screen_brightness.sh"),
+	hl.dsp.exec_cmd("brightnessctl set 5%+ && ~/.config/scripts/screen_brightness.sh"),
 	{ locked = true, repeating = true }
 )
 
 -- Brightess UP
 hl.bind(
 	"XF86MonBrightnessDown",
-	hl.dsp.exec_cmd("brightnessctl set 5%- && ~/.config/hypr/scripts/screen_brightness.sh"),
+	hl.dsp.exec_cmd("brightnessctl set 5%- && ~/.config/scripts/screen_brightness.sh"),
 	{ locked = true, repeating = true }
 )
 hl.bind(
 	mainMod .. " + F9",
-	hl.dsp.exec_cmd("brightnessctl set 5%- && ~/.config/hypr/scripts/screen_brightness.sh"),
+	hl.dsp.exec_cmd("brightnessctl set 5%- && ~/.config/scripts/screen_brightness.sh"),
 	{ locked = true, repeating = true }
 )
 

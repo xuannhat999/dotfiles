@@ -1,6 +1,5 @@
 #!/bin/bash
 THEME="$HOME/.config/rofi/power-menu-style.rasi"
-
 chosen=$(printf "  Shutdown\n  Reboot\n  Lock\n󰤄  Suspend\n󰍃  Logout" |
   rofi -dmenu \
     -p "Power Menu" \
@@ -13,15 +12,13 @@ case "$chosen" in
 *Shutdown) systemctl poweroff ;;
 *Reboot) systemctl reboot ;;
 *Lock)
-  sleep 0.1
-  killall hypridle
-  hypridle &
   hyprlock
-  killall hypridle
   ;;
 *Suspend)
   systemctl suspend
   hyprlock
   ;;
-*Logout) hyprctl dispatch 'hl.dsp.exit()' ;;
+*Logout)
+  loginctl terminate-user "$USER"
+  ;;
 esac
