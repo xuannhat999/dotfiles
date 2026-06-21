@@ -4,6 +4,7 @@ text-color=#ffffff
 border-radius=10
 border-size=1
 border-color=#b29cc6
+progress-color=#614877
 default-timeout=3000
 padding=5
 width=340
