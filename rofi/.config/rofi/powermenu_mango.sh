@@ -1,6 +1,6 @@
 #!/bin/bash
 THEME="$HOME/.config/rofi/power-menu-style.rasi"
-chosen=$(printf "  Shutdown\n  Reboot\n  Lock\n󰤄  Suspend\n󰍃  Logout" |
+chosen=$(printf " Shutdown\n Reboot\n Lock\n󰤄 Suspend\n󰍃 Logout" |
   rofi -dmenu \
     -p "Power Menu" \
     -theme "$THEME" \
@@ -11,13 +11,18 @@ chosen=$(printf "  Shutdown\n  Reboot\n  Lock\n󰤄  Suspend\n󰍃  Log
 case "$chosen" in
 *Shutdown) systemctl poweroff ;;
 *Reboot) systemctl reboot ;;
+
 *Lock)
-  hyprlock
+  swayidle -w &
+  swaylock
+  killall swayidle 2>/dev/null || true
   ;;
+
 *Suspend)
+  swaylock &
   systemctl suspend
-  hyprlock
   ;;
+
 *Logout)
   loginctl terminate-user "$USER"
   ;;

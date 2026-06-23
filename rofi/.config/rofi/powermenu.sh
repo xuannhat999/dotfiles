@@ -13,11 +13,7 @@ case "$chosen" in
 *Shutdown) systemctl poweroff ;;
 *Reboot) systemctl reboot ;;
 *Lock)
-  sleep 0.1
-  killall hypridle
-  hypridle &
   hyprlock
-  killall hypridle
   ;;
 *Suspend)
   systemctl suspend
