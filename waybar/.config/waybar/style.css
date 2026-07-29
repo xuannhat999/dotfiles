@@ -58,12 +58,11 @@ window#waybar {
 #workspaces button.special {
   margin-left: 8px;
 }
-
-#workspaces button.special.active,
-#workspaces button.special.focused {
-  background: linear-gradient(90deg, #ff95b7, @primary1);
-  min-width: 45px;
-}
+/* #workspaces button.special.active, */
+/* #workspaces button.special.focused { */
+/*   background: linear-gradient(90deg, #ff95b7, @primary1); */
+/*   min-width: 45px; */
+/* } */
 
 #date-time {
   background-color: @background1;
@@ -80,7 +79,8 @@ window#waybar {
 
 #clock.time {
   color: black;
-  background-color: @primary1;
+  /* background-color: @primary1; */
+  background: linear-gradient(90deg, #83bfff, @primary1);
   border-radius: 6px;
   margin-right: 15px;
   padding: 0px 10px;

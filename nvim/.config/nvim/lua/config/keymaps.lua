@@ -167,13 +167,32 @@ vim.keymap.set("n", "<leader>si", function()
 end, { desc = "Import Schema" })
 
 vim.keymap.set("n", "<leader>se", function()
-  local function prompt_export()
+  local db_types = { "mysql", "postgresql" }
+  local prompt_text = "Database type: "
+  for i, t in ipairs(db_types) do
+    prompt_text = prompt_text .. i .. ". " .. t .. " | "
+  end
+
+  vim.ui.input({ prompt = prompt_text }, function(choice)
+    if not choice or choice == "" then
+      return
+    end
+
+    local choice_num = tonumber(choice)
+    if not choice_num or choice_num < 1 or choice_num > #db_types then
+      vim.notify("Invalid choice", vim.log.levels.ERROR)
+      return
+    end
+
+    local db_type = db_types[choice_num]
+    local default_port = (db_type == "postgresql" and "5432") or "3306"
+
     vim.ui.input({ prompt = "Host: ", default = "localhost" }, function(host)
       if not host or host == "" then
         return
       end
 
-      vim.ui.input({ prompt = "Port: ", default = "3306" }, function(port)
+      vim.ui.input({ prompt = "Port: ", default = default_port }, function(port)
         if not port or port == "" then
           return
         end
@@ -194,15 +213,28 @@ vim.keymap.set("n", "<leader>se", function()
                   return
                 end
 
-                local cmd = string.format(
-                  "mariadb-dump -h %s -P %s -u %s -p'%s' %s --single-transaction --quick > %s",
-                  host,
-                  port,
-                  user,
-                  pass,
-                  db_name,
-                  filename
-                )
+                local cmd
+                if db_type == "postgresql" then
+                  cmd = string.format(
+                    "PGPASSWORD='%s' pg_dump -h %s -p %s -U %s -d %s --no-owner > %s",
+                    pass,
+                    host,
+                    port,
+                    user,
+                    db_name,
+                    filename
+                  )
+                else
+                  cmd = string.format(
+                    "mariadb-dump -h %s -P %s -u %s -p'%s' %s --single-transaction --quick > %s",
+                    host,
+                    port,
+                    user,
+                    pass,
+                    db_name,
+                    filename
+                  )
+                end
 
                 print("\nExporting schema...")
                 local result = vim.fn.system(cmd)
@@ -218,7 +250,5 @@ vim.keymap.set("n", "<leader>se", function()
         end)
       end)
     end)
-  end
-
-  prompt_export()
+  end)
 end, { desc = "Export Schema" })
