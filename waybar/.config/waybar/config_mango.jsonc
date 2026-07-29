@@ -28,7 +28,6 @@
   },
   "ext/workspaces": {
     "format": "{icon}",
-    "ignore-hidden": true,
     "on-click": "activate",
     "on-click-right": "deactivate"
   },
