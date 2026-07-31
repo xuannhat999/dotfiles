@@ -1,15 +1,12 @@
 #!/bin/bash
 
-# Dừng script nếu có lỗi xảy ra
 set -e
 mkdir -p ~/Pictures/Wallpapers/
 cp wallpaper1.jpg ~/Pictures/Wallpapers/
 echo "--- Bắt đầu cài đặt Dotfiles ---"
 
-# 1. Cập nhật hệ thống
 sudo pacman -Syu --noconfirm
 
-# 2. Cài đặt các package cơ bản từ kho chính (Pacman)
 PACKAGES=(
   # CORE
   "neovim"
@@ -19,11 +16,11 @@ PACKAGES=(
   "hyprland"
   "gnome-keyring"
   "fcitx5-bamboo"
-  "hyprlock"
   "swaybg"
-  "hyprshot"
-  "hypridle"
   "bluez"
+  "swayidle"
+  "swaylock"
+  "swayimg"
   "bluez-utils"
   "pipewire-pulse"
   "wirepluber"
@@ -63,7 +60,6 @@ PACKAGES=(
 echo "Đang cài đặt các package từ Pacman..."
 sudo pacman -S --needed --noconfirm "${PACKAGES[@]}"
 
-# 3. Cài đặt AUR Helper (nếu chưa có)
 if ! command -v yay &>/dev/null; then
   echo "Đang cài đặt yay..."
   git clone https://aur.archlinux.org/yay.git /tmp/yay
@@ -71,10 +67,9 @@ if ! command -v yay &>/dev/null; then
   cd -
 fi
 
-# 4. Cài đặt các package từ AUR
 AUR_PACKAGES=(
   "catppuccin-gtk-theme-mocha"
-  "brave-bin"
+  "brave-origin-bin"
   "android_studio"
 )
 
