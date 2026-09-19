@@ -17,7 +17,7 @@ local function info(content)
 end
 
 local function has_value(val)
-	local tab = { ".jpg", ".png", ".webp", ".HEIC", "heic", ".jpeg" }
+	local tab = { ".jpg", ".png", ".webp", ".HEIC", ".heic", ".jpeg" }
 	for _, value in ipairs(tab) do
 		if value == val then
 			return true

@@ -32,7 +32,7 @@
     "on-click-right": "deactivate"
   },
   "tray": {
-    "spacing": 10
+    "spacing": 10,
   },
   "clock#date": {
     "format": "{:%a, %d/%m/%y}",
@@ -117,7 +117,8 @@
     "modules": [
       "network",
       "bluetooth",
-      "pulseaudio"
+      "pulseaudio",
+      "keyboard-state"
     ]
   },
   "bluetooth": {
@@ -159,6 +160,14 @@
       ]
     },
     "on-click": "~/.config/hypr/scripts/launch_wiremix.sh"
+  },
+  "keyboard-state": {
+    "capslock": true,
+    "format": "{icon}",
+    "format-icons": {
+      "locked": "󰬶",
+      "unlocked": "󰬵"
+    }
   },
   "custom/power": {
     "icon-size": 21,

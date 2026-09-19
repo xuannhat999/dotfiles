@@ -60,8 +60,8 @@ download = [
   { run = "ya emit download --open %S", desc = "Download and open" },
   { run = "ya emit download %S", desc = "Download" },
 ]
-zathurapdf = [{ run = 'zathura "$@" &', desc = "ZathuraPDF" }]
-libreoffice = [{ run = 'libreoffice "$@"', desc = "LibreOffice" }]
+zathurapdf = [{ run = 'zathura %s1 &', desc = "ZathuraPDF" }]
+libreoffice = [{ run = 'libreoffice %s1 &', desc = "LibreOffice" }]
 [open]
 rules = [
   { url = "*.pdf", use = [

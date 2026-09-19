@@ -185,3 +185,9 @@ window#waybar {
   font-size: medium;
   font-weight: bold;
 }
+
+#keyboard-state {
+  font-size: larger;
+  font-weight: bold;
+  margin-left: 10px;
+}

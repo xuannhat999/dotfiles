@@ -1,7 +1,7 @@
 [[plugin.deps]]
 use = "Joao-Queiroga/drag"
-rev = "3dff129"
-hash = "4e3f1669b6454a80fdc61b2b4f9305b0"
+rev = "5f6b284"
+hash = "5fa7ee4328551934e4af11e3547f3a2c"
 
 [[plugin.deps]]
 use = "Rolv-Apneseth/starship"
@@ -35,8 +35,8 @@ hash = "8714306b5cac6359edbacbf545fbd691"
 
 [[plugin.deps]]
 use = "XYenon/clipboard"
-rev = "68b506d"
-hash = "f43576db983846d8d5b139ece1eda439"
+rev = "b25ec96"
+hash = "9f07d7de37a430833ef33b92c0bcf8cb"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
