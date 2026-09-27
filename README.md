@@ -1,6 +1,6 @@
 - OS: Linux
 - Distro: Arch
-- Window Manager: Hyprland
+- Window Manager: Mango
 - Greeter: greetd + greetd-tuigreed
 - Status bar: Waybar
 - Notification: Mako
