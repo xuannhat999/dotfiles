@@ -1,42 +1,37 @@
 [[plugin.deps]]
-use = "Joao-Queiroga/drag"
-rev = "5f6b284"
-hash = "5fa7ee4328551934e4af11e3547f3a2c"
-
-[[plugin.deps]]
-use = "Rolv-Apneseth/starship"
-rev = "eca1861"
-hash = "e519d894e94ded741e06aae4d4775981"
-
-[[plugin.deps]]
 use = "KKV9/compress"
-rev = "46a6b9f"
-hash = "771af2becc575a3f43d0542de823969d"
-
-[[plugin.deps]]
-use = "TD-Sky/sudo"
-rev = "86205aa"
-hash = "9628b660afb192d32f2ea5f6634d3e72"
+rev = "80e5268"
+hash = "868db729374b97871bc30b96d0e9061f"
 
 [[plugin.deps]]
 use = "Lil-Dank/lazygit"
-rev = "8c4086c"
-hash = "85316b5e9abeae2531d3e5d02a094381"
-
-[[plugin.deps]]
-use = "atareao/convert"
-rev = "ce060d9"
-hash = "1c0465351f2a344e842f065ab316f265"
+rev = "e73fd74"
+hash = "6ea5f37c7f219671ec504cb8311f889d"
 
 [[plugin.deps]]
 use = "uhs-robert/recycle-bin"
-rev = "fa68711"
-hash = "8714306b5cac6359edbacbf545fbd691"
+rev = "fe48a02"
+hash = "edd449b02a169bd8fee052be96a31823"
 
 [[plugin.deps]]
 use = "XYenon/clipboard"
 rev = "b25ec96"
 hash = "9f07d7de37a430833ef33b92c0bcf8cb"
+
+[[plugin.deps]]
+use = "TD-Sky/sudo"
+rev = "e70796a"
+hash = "74129f78c811cfe7c694d86c3f634c26"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "ea92cf4"
+hash = "9776f378459072b6c2875eae5addc49d"
+
+[[plugin.deps]]
+use = "atareao/convert"
+rev = "ce060d9"
+hash = "1c0465351f2a344e842f065ab316f265"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
