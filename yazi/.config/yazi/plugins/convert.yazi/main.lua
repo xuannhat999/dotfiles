@@ -17,7 +17,8 @@ local function info(content)
 end
 
 local function has_value(val)
-	local tab = { ".jpg", ".png", ".webp", ".HEIC", ".heic", ".jpeg" }
+	val = val:lower()
+	local tab = { ".jpg", ".png", ".webp", ".jpeg", ".heic", ".HEIC" }
 	for _, value in ipairs(tab) do
 		if value == val then
 			return true
@@ -29,8 +30,8 @@ end
 
 local selected_or_hovered = ya.sync(function()
 	local tab, paths = cx.active, {}
-	for _, u in pairs(tab.selected) do
-		paths[#paths + 1] = tostring(u)
+	for _, f in pairs(tab.selected) do
+		paths[#paths + 1] = tostring(f.url)
 	end
 	if #paths == 0 and tab.current.hovered then
 		paths[1] = tostring(tab.current.hovered.url)
@@ -47,24 +48,31 @@ return {
 			destination_extension = "." .. destination_extension
 		end
 		local urls = selected_or_hovered()
+		local converted = 0
 		for _, source in pairs(urls) do
 			local source_extension = source:match("^.+(%..+)$")
-			if source_extension ~= destination_extension and has_value(source_extension) then
-				local destination = string.gsub(source, source_extension, destination_extension)
-				if file_exists(destination) then
-					local message = string.format("File %s already exists", destination)
-					info(message)
-					return
+			if source_extension ~= nil then
+				local source_extension_lower = source_extension:lower()
+				if source_extension_lower ~= destination_extension:lower() and has_value(source_extension_lower) then
+					local destination = source:sub(1, #source - #source_extension) .. destination_extension
+					if file_exists(destination) then
+						info(string.format("File %s already exists, skipped", destination))
+					else
+						local output, err = Command("magick"):arg(tostring(source)):arg(tostring(destination)):output()
+						local message = ""
+						if not output or err then
+							message = string.format("Failed to convert from %s to %s. %s", source, destination, err)
+						elseif output.stdout == "" then
+							message = string.format("Converted %s to %s", source, destination)
+							converted = converted + 1
+						end
+						info(message)
+					end
 				end
-				local output, err = Command("magick"):arg(tostring(source)):arg(tostring(destination)):output()
-				local message = ""
-				if not output or err then
-					message = string.format("Failed to convert from %s to %s. %s", source, destination, err)
-				elseif output.stdout == "" then
-					message = string.format("Converted %s to %s", source, destination)
-				end
-				info(message)
 			end
+		end
+		if converted == 0 then
+			info("No convertible image files found")
 		end
 	end,
 }

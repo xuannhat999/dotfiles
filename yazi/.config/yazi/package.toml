@@ -15,8 +15,8 @@ hash = "edd449b02a169bd8fee052be96a31823"
 
 [[plugin.deps]]
 use = "XYenon/clipboard"
-rev = "b25ec96"
-hash = "9f07d7de37a430833ef33b92c0bcf8cb"
+rev = "a2655fd"
+hash = "90625fa33e3372073d60f124c3c867"
 
 [[plugin.deps]]
 use = "TD-Sky/sudo"
@@ -29,11 +29,11 @@ rev = "ea92cf4"
 hash = "9776f378459072b6c2875eae5addc49d"
 
 [[plugin.deps]]
-use = "atareao/convert"
-rev = "ce060d9"
-hash = "1c0465351f2a344e842f065ab316f265"
+use = "xuannhat999/convert"
+rev = "1d37103"
+hash = "c411528111592c11a9ecef6cb45dea3a"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "9511cb0"
-hash = "7dfe41c9c3d9be76da8a844263d0bbed"
+rev = "1183892"
+hash = "ce320f877fe709b189433941aba747c4"

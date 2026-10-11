@@ -3,6 +3,7 @@
 ---@class ClipboardJobArgs
 ---@field action string
 ---@field notify_unknown_display_server? boolean
+---@field disable_paste_notifications? boolean
 
 ---@class ClipboardJob
 ---@field args ClipboardJobArgs
@@ -15,6 +16,13 @@
 
 ---@alias ClipboardDisplayServer "x11"|"wayland"|"unknown"
 ---@alias ClipboardConflictChoice "overwrite"|"rename"|"skip"
+
+-- Yazi delivers a bare `--flag` as boolean true, and `--flag=value` as a string.
+---@param value unknown
+---@return boolean
+local function to_boolean(value)
+	return value == true or value == "true"
+end
 
 ---@param state table
 ---@return string[]
@@ -50,15 +58,18 @@ end)
 
 ---@class ClipboardPlugin
 ---@field notify_unknown_display_server boolean
+---@field disable_paste_notifications boolean
 local M = {
 	notify_unknown_display_server = false,
+	disable_paste_notifications = false,
 }
 
 ---@param job ClipboardJob
 ---@return nil
 function M:entry(job)
 	ya.dbg("Clipboard", "args", job.args)
-	self.notify_unknown_display_server = job.args.notify_unknown_display_server or false
+	self.notify_unknown_display_server = to_boolean(job.args.notify_unknown_display_server)
+	self.disable_paste_notifications = to_boolean(job.args.disable_paste_notifications)
 
 	if job.args.action == "copy" then
 		return self:copy()
@@ -360,7 +371,7 @@ function M:paste()
 		end
 	end
 
-	if copied > 0 or skipped > 0 then
+	if not self.disable_paste_notifications and (copied > 0 or skipped > 0) then
 		local parts = {}
 		if copied > 0 then
 			table.insert(parts, "Pasted " .. copied .. " file(s)")

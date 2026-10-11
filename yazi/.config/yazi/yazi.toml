@@ -35,7 +35,7 @@ edit = [
   # { run = "code -w %s", desc = "code (block)", for = "windows", block = true },
 ]
 play = [
-  { run = "xdg-open %s1", desc = "Play", for = "linux", orphan = true },
+  { run = "xdg-open %s1 &", desc = "Play", for = "linux", orphan = true },
   # { run = "open %s", desc = "Play", for = "macos" },
   # { run = 'start "" %s1', desc = "Play", for = "windows", orphan = true },
   # { run = "termux-open %s1", desc = "Play", for = "android" },
@@ -49,7 +49,7 @@ open = [
   # { run = "termux-open %s1", desc = "Open", for = "android" },
 ]
 reveal = [
-  { run = "xdg-open %d1", desc = "Reveal", for = "linux" },
+  { run = "xdg-open %s1 &", desc = "Reveal", for = "linux" },
   # { run = "open -R %s1", desc = "Reveal", for = "macos" },
   # { run = "explorer /select,%s1", desc = "Reveal", for = "windows", orphan = true },
   # { run = "termux-open %d1", desc = "Reveal", for = "android" },
@@ -71,7 +71,10 @@ rules = [
   { url = "*.pptx", use = "libreoffice" },
   { url = "*.docx", use = "libreoffice" },
   { url = "*.xlsx", use = "libreoffice" },
-
+  { url = "*.html", use = [
+    "edit",
+    "reveal",
+  ] },
   # Folder
   { url = "*/", use = [
     "edit",

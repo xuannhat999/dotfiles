@@ -13,7 +13,6 @@ PACKAGES=(
   "stow"
   "kitty"
   "waybar"
-  "hyprland"
   "gnome-keyring"
   "fcitx5-bamboo"
   "swaybg"
@@ -27,7 +26,6 @@ PACKAGES=(
   "greetd"
   "greetd-tuigreet"
   "7zip"
-  "zip"
   "unzip"
   # TUI MANAGER
   "wiremix"
@@ -70,7 +68,7 @@ fi
 AUR_PACKAGES=(
   "catppuccin-gtk-theme-mocha"
   "brave-origin-bin"
-  "android_studio"
+  "mangowm"
 )
 
 echo "Đang cài đặt các package từ AUR..."

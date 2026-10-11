@@ -17,8 +17,12 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 # PS1='[\u@\h \W]\$ '
 
-alias db='cd ~/schema && nvim -c "DBUIToggle"'
 alias y='yazi'
+alias v='nvim'
+alias postgres-start='sudo systemctl start postgresql'
+alias postgres-stop='sudo systemctl stop postgresql'
+alias redis-start='sudo systemctl start redis'
+alias redis-stop='sudo systemctl stop redis'
 
 eval "$(fzf --bash)"
 eval "$(starship init bash)"
