@@ -58,6 +58,12 @@ window#waybar {
 #workspaces button.special {
   margin-left: 8px;
 }
+
+#workspaces button:hover {
+  background-color: #37204a;
+
+}
+
 /* #workspaces button.special.active, */
 /* #workspaces button.special.focused { */
 /*   background: linear-gradient(90deg, #ff95b7, @primary1); */

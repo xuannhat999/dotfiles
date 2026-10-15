@@ -15,8 +15,8 @@ hash = "edd449b02a169bd8fee052be96a31823"
 
 [[plugin.deps]]
 use = "XYenon/clipboard"
-rev = "a2655fd"
-hash = "90625fa33e3372073d60f124c3c867"
+rev = "4b4b6c5"
+hash = "cdcc9c84c9757d585af78c87b012f38b"
 
 [[plugin.deps]]
 use = "TD-Sky/sudo"
