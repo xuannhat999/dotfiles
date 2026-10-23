@@ -34,7 +34,6 @@ PACKAGES=(
   "yazi"
   "mako"
   "rofi"
-  "rofi-calc"
   # THEME
   "papirus-icon-theme"
   "ttf-jetbrains-mono-nerd"

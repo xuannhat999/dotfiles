@@ -48,7 +48,6 @@ element-text {
     padding: 0px 10px;
 }
 
-/* Ép màu khi được chọn */
 element selected {
     background-color: @fg-col;
     text-color:       @fg-selected;

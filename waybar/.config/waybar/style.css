@@ -1,5 +1,6 @@
-@define-color primary1 #d8adff;
-@define-color background1 #22122f;
+@define-color primary1 #bc95eb;
+@define-color primary2 #7bb3ee;
+@define-color text #ffffff;
 @define-color good #32df91;
 @define-color warning #ffc35e;
 @define-color critical #ff6671;
@@ -13,51 +14,46 @@
 }
 
 window#waybar {
-  background-color: transparent;
-  color: #ffffff;
+  color: @text;
 }
 
 #custom-launcher {
-  font-size: 20px;
+  font-size: large;
   font-weight: bolder;
-  margin-left: 10px;
-  margin-right: 5px;
 }
 
 
 #workspaces {
-  background-color: @background1;
-  border-radius: 10px;
-  padding: 3px 2px;
   border: 1px solid @primary1;
+  border-radius: 8px;
+  min-width: 120px;
 }
 
 
 #workspaces button {
-  background-color: transparent;
+  color: @text;
   font-size: medium;
   font-weight: bold;
   transition: all 250ms ease-in-out;
-  color: #ffffff;
-  border-radius: 7px;
+  border-radius: 8px;
   min-height: 0px;
-  min-width: 24px;
-  margin: 0px 2px;
+  min-width: 20px;
+  padding: 0 4px;
 }
 
 
 #workspaces button.focused,
 #workspaces button.active {
-  background: linear-gradient(90deg, #83bfff, @primary1);
+  background: linear-gradient(90deg, @primary2, @primary1);
   color: #000000;
   transition: all 250ms ease-in-out;
-  min-width: 55px;
+  min-width: 36px;
   font-weight: bolder;
 }
 
-#workspaces button.special {
-  margin-left: 8px;
-}
+/* #workspaces button.special { */
+/*   margin-left: 8px; */
+/* } */
 
 #workspaces button:hover {
   background-color: #37204a;
@@ -71,10 +67,6 @@ window#waybar {
 /* } */
 
 #date-time {
-  background-color: @background1;
-  border-radius: 10px;
-  padding: 3px 45px;
-  border: 1px solid @primary1;
   font-weight: bolder;
 }
 
@@ -84,21 +76,12 @@ window#waybar {
 }
 
 #clock.time {
-  color: black;
-  /* background-color: @primary1; */
-  background: linear-gradient(90deg, #83bfff, @primary1);
-  border-radius: 6px;
-  margin-right: 15px;
-  padding: 0px 10px;
+  margin-right: 16px;
   font-weight: bolder;
   font-size: medium;
 }
 
 #tray {
-  padding: 0 20px;
-  background-color: @background1;
-  border-radius: 10px;
-  border: 1px solid @primary1;
   font-size: x-small;
 }
 
@@ -117,17 +100,12 @@ window#waybar {
   color: @critical;
 }
 
-#system {
-  padding: 0px 10px;
-  border-radius: 8px;
-  background-color: @background1;
-  border: 1px solid @primary1;
-}
+#system {}
 
 #battery {
+  padding-right: 12px;
   font-weight: bold;
   color: @good;
-  background: transparent;
   font-size: medium;
 }
 
@@ -157,34 +135,21 @@ window#waybar {
 
 
 #custom-power {
-  font-size: 20px;
-  margin-left: 5px;
-  margin-right: 10px;
+  font-size: large;
 }
 
 #power-profiles-daemon {
-  margin-left: 10px;
   font-weight: bold;
   font-size: medium;
 }
 
-#pw {
-  background-color: @background1;
-  border: 1px solid @primary1;
-  border-radius: 10px;
-  padding: 0 15px;
-}
+#pw {}
 
-#network-bluetooth-audio {
-  border: 1px solid @primary1;
-  background-color: @background1;
-  border-radius: 10px;
-  padding: 0px 15px;
-}
+#network-bluetooth-audio {}
 
 #bluetooth {
   font-size: large;
-  margin: 0px 15px;
+  margin: 0px 12px;
 }
 
 #pulseaudio {
