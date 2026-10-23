@@ -118,7 +118,6 @@
       "network",
       "bluetooth",
       "pulseaudio",
-      "keyboard-state"
     ]
   },
   "bluetooth": {
@@ -160,14 +159,6 @@
       ]
     },
     "on-click": "~/.config/hypr/scripts/launch_wiremix.sh"
-  },
-  "keyboard-state": {
-    "capslock": true,
-    "format": "{icon}",
-    "format-icons": {
-      "locked": "󰬶",
-      "unlocked": "󰬵"
-    }
   },
   "custom/power": {
     "icon-size": 21,

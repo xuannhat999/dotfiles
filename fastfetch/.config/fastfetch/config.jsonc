@@ -18,6 +18,11 @@
   },
   "modules": [
     {
+      "type": "host",
+      "key": " 󰍹  HOST    ",
+      "keyColor": "38;5;111"
+    },
+    {
       "type": "os",
       "key": " 󰣇  SYSTEM  ",
       "keyColor": "38;5;111"
@@ -29,7 +34,7 @@
     },
     {
       "type": "wm",
-      "key": " 󱂬  WINDOW  ",
+      "key": " 󱂬  WM      ",
       "keyColor": "38;5;111"
     },
     {
@@ -52,7 +57,7 @@
       "type": "cpu",
       "key": " 󰍛  CPU     ",
       "keyColor": "38;5;115",
-      "format": "{1}",
+      "format": "{1}"
     },
     {
       "type": "gpu",

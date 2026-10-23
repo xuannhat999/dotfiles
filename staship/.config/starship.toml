@@ -19,7 +19,7 @@ $java\
 $c\
 [](fg:#272e3f)\
 \n$character"""
-
+add_newline = false
 [username]
 style_user = " bold fg:#090c0c bg:#a3aed2"
 style_root = " bold fg:#760303 bg:#a3aed2"
