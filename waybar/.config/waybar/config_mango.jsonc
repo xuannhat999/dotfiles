@@ -6,18 +6,22 @@
   "margin-left": 12,
   "margin-right": 12,
   "height": 24,
-  "spacing": 24,
+  "spacing": 18,
   "modules-left": [
     "custom/launcher",
     "ext/workspaces"
   ],
   "modules-center": [
-    "group/date-time"
+    "group/date-time",
   ],
   "modules-right": [
-    "group/system",
-    "group/pw",
-    "group/network-bluetooth-audio",
+    "cpu",
+    "memory",
+    "battery",
+    "power-profiles-daemon",
+    "network",
+    "bluetooth",
+    "pulseaudio",
     "tray",
     "custom/power"
   ],
@@ -52,7 +56,7 @@
     ]
   },
   "cpu": {
-    "format": " {usage}%  ",
+    "format": " {usage}%",
     "tooltip": false,
     "states": {
       "warning": 70,
@@ -66,20 +70,6 @@
       "warning": 70,
       "critical": 95,
     }
-  },
-  "group/system": {
-    "orientation": "horizontal",
-    "modules": [
-      "cpu",
-      "memory"
-    ]
-  },
-  "group/pw": {
-    "orientation": "horizontal",
-    "modules": [
-      "battery",
-      "power-profiles-daemon"
-    ]
   },
   "battery": {
     "states": {
@@ -111,14 +101,6 @@
       "balanced": "",
       "power-saver": ""
     }
-  },
-  "group/network-bluetooth-audio": {
-    "orientation": "horizontal",
-    "modules": [
-      "network",
-      "bluetooth",
-      "pulseaudio",
-    ]
   },
   "bluetooth": {
     "format": "{icon}",

@@ -17,7 +17,8 @@ window#waybar {
   color: @text;
 }
 
-#custom-launcher {
+#custom-launcher,
+#custom-power {
   font-size: large;
   font-weight: bolder;
 }
@@ -66,23 +67,22 @@ window#waybar {
 /*   min-width: 45px; */
 /* } */
 
-#date-time {
-  font-weight: bolder;
-}
+#date-time {}
 
 #clock.date {
-  font-weight: bolder;
+  font-weight: bold;
   font-size: medium;
 }
 
 #clock.time {
   margin-right: 16px;
-  font-weight: bolder;
+  font-weight: bold;
   font-size: medium;
 }
 
 #tray {
   font-size: x-small;
+  margin-right: 8px;
 }
 
 #cpu,
@@ -103,8 +103,6 @@ window#waybar {
 #system {}
 
 #battery {
-  padding-right: 12px;
-  font-weight: bold;
   color: @good;
   font-size: medium;
 }
@@ -133,11 +131,6 @@ window#waybar {
   color: @warning;
 }
 
-
-#custom-power {
-  font-size: large;
-}
-
 #power-profiles-daemon {
   font-weight: bold;
   font-size: medium;
@@ -149,7 +142,6 @@ window#waybar {
 
 #bluetooth {
   font-size: large;
-  margin: 0px 12px;
 }
 
 #pulseaudio {
