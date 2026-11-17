@@ -21,6 +21,9 @@ vim.keymap.set("n", "<leader>ll", "<cmd>Lazy<cr>", { desc = "Lazy" })
 vim.keymap.set("n", "<leader>le", "<cmd>LazyExtras<cr>", { desc = "LazyExtras" })
 vim.keymap.set("n", "<leader>lm", "<cmd>Mason<cr>", { desc = "Mason" })
 
+-- Markdown Preview
+vim.keymap.set("n", "<leader>mp", "<cmd>MarkdownPreview<cr>", { desc = "MarkdownPreview" })
+
 -- Run program
 vim.keymap.set("n", "<F5>", function()
   if vim.bo.buftype == "" then

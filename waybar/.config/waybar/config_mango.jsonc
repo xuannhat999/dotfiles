@@ -9,7 +9,8 @@
   "spacing": 18,
   "modules-left": [
     "custom/launcher",
-    "ext/workspaces"
+    "mango/workspaces",
+    "mango/window"
   ],
   "modules-center": [
     "group/date-time",
@@ -30,10 +31,23 @@
     "tooltip": false,
     "on-click": "rofi -show drun"
   },
-  "ext/workspaces": {
+  "mango/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
-    "on-click-right": "deactivate"
+    "on-click-right": "deactivate",
+    "tag-filter": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "overview-label": ""
+  },
+  "mango/window": {
+    "format": "",
+    "icon": true,
+    "icon-size": 20
   },
   "tray": {
     "spacing": 12,
@@ -77,7 +91,7 @@
       "warning": 25,
       "critical": 10
     },
-    "format": "{icon} {capacity}% ",
+    "format": "{icon} {capacity}%",
     "format-full": "{icon} {capacity}%",
     "format-charging": " {capacity}%",
     "format-plugged": " {capacity}%",

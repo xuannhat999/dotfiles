@@ -23,6 +23,15 @@ window#waybar {
   font-weight: bolder;
 }
 
+#custom-power {
+  margin-left: 12px;
+  ;
+}
+
+#custom-launcher {
+  margin-right: 12px;
+}
+
 
 #workspaces {
   border: 1px solid @primary1;
@@ -52,37 +61,30 @@ window#waybar {
   font-weight: bolder;
 }
 
-/* #workspaces button.special { */
-/*   margin-left: 8px; */
-/* } */
 
 #workspaces button:hover {
   background-color: #37204a;
 
 }
 
-/* #workspaces button.special.active, */
-/* #workspaces button.special.focused { */
-/*   background: linear-gradient(90deg, #ff95b7, @primary1); */
-/*   min-width: 45px; */
-/* } */
+#workspaces button.overview {
+  background: linear-gradient(90deg, @primary2, @primary1);
+  color: #000000;
+  min-width: 120px;
+}
 
-#date-time {}
 
 #clock.date {
   font-weight: bold;
-  font-size: medium;
 }
 
 #clock.time {
   margin-right: 16px;
   font-weight: bold;
-  font-size: medium;
 }
 
 #tray {
-  font-size: x-small;
-  margin-right: 8px;
+  font-size: small;
 }
 
 #cpu,
@@ -100,11 +102,8 @@ window#waybar {
   color: @critical;
 }
 
-#system {}
-
 #battery {
   color: @good;
-  font-size: medium;
 }
 
 #battery.charging,
@@ -131,20 +130,10 @@ window#waybar {
   color: @warning;
 }
 
-#power-profiles-daemon {
-  font-weight: bold;
-  font-size: medium;
-}
+#power-profiles-daemon {}
 
-#pw {}
-
-#network-bluetooth-audio {}
+#pulseaudio {}
 
 #bluetooth {
   font-size: large;
-}
-
-#pulseaudio {
-  font-size: medium;
-  font-weight: bold;
 }
